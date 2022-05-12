@@ -1,22 +1,17 @@
 name: Publish Package
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       versionIncrement:
-        description: 'Version Increment'     
+        description: "Version Increment"
         required: true
-        default: 'patch' 
+        default: "patch"
         type: choice
         options:
-        - patch
-        - minor
-        - major 
-
-on:
-  push:
-    branches:
-      - main
+          - patch
+          - minor
+          - major
 
 jobs:
   Build-And-Publish:
@@ -32,7 +27,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           default: ${{ github.event.inputs.versionIncrement }}
-          bump-policy: 'ignore'
+          bump-policy: "ignore"
       - name: Publish NPM Package
         run: npm publish
         env:
