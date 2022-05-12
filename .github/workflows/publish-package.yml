@@ -16,7 +16,8 @@ jobs:
       - run: yarn build
       - name: Github Tag Bump
         uses: anothrNick/github-tag-action@1.39.0
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DEFAULT_BUMP: patch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
       - name: Publish NPM Package
         run: npm publish
