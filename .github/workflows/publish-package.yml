@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - justin/publish-action
 
 jobs:
   Build-And-Publish:
@@ -21,6 +20,6 @@ jobs:
         with:
           default: patch
       - name: Publish NPM Package
-        run: npm publish --dry-run
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
