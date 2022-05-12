@@ -1,0 +1,22 @@
+name: Publish Package
+
+on:
+  push:
+    branches:
+      - main
+      - justin/publish-action
+
+jobs:
+  Build-And-Publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/use-yarn-cache
+      - run: yarn typescript
+      - run: yarn build
+      - name: Github Tag Bump
+        uses: anothrNick/github-tag-action@1.39.0
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEFAULT_BUMP: patch
+      - name: Publish NPM Package
+        run: npm publish
