@@ -4,12 +4,12 @@ import { useEventListener } from "../useEventListener";
 export const useElementPosition = (element: RefObject<HTMLElement>): { x: number; y: number } => {
   const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [loaded, setLoaded] = useState(false);
+  const { x, y } = element.current?.getBoundingClientRect() || {};
   const updateRefPosition = useCallback(() => {
-    if (element.current) {
-      const { x, y } = element.current.getBoundingClientRect();
+    if (x && y) {
       setPosition({ x, y });
     }
-  }, [element.current]);
+  }, [x, y]);
   if (!loaded && element.current) {
     updateRefPosition();
     setLoaded(true);
