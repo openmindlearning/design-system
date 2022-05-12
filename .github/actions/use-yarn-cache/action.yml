@@ -14,5 +14,3 @@ runs:
     - name: Install dependencies
       run: yarn install
       shell: bash
-      env:
-        GITHUB_NPM_AUTH_TOKEN: ${{ inputs.npmAuthToken }}
