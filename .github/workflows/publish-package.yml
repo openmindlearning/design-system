@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/use-yarn-cache
       - run: yarn typescript
       - run: yarn build
@@ -31,4 +33,4 @@ jobs:
       - name: Publish NPM Package
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
