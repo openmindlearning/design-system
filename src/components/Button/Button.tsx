@@ -41,7 +41,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
       accessibilityLabel,
       ...htmlButtonProps
     }: Props,
-    ref: React.LegacyRef<HTMLButtonElement>
+    ref: React.LegacyRef<HTMLButtonElement>,
   ): ReactElement => {
     return (
       <button
@@ -69,7 +69,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
         )}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

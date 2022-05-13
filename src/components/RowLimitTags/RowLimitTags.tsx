@@ -1,13 +1,6 @@
 import * as styles from "./RowLimitTags.css";
 
-import React, {
-  ReactElement,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { Tag } from "../Tag";
 
 type Props = {
@@ -39,7 +32,7 @@ export const RowLimitTags = ({ tags, rowLimit }: Props): ReactElement => {
       rowLimit: number,
       boundingContainer: HTMLDivElement,
       hiddenTag: HTMLDivElement,
-      tagsCut: string[]
+      tagsCut: string[],
     ): string[] => {
       const rows: string[][] = [];
       let currentRow: string[] = [];
@@ -47,10 +40,7 @@ export const RowLimitTags = ({ tags, rowLimit }: Props): ReactElement => {
 
       const iterTags =
         tagsCut.length > 0
-          ? [
-              ...tags.slice(0, tags.length - tagsCut.length),
-              `+ ${tagsCut.length}`,
-            ]
+          ? [...tags.slice(0, tags.length - tagsCut.length), `+ ${tagsCut.length}`]
           : tags;
 
       for (const [idx, t] of iterTags.entries()) {
@@ -67,10 +57,7 @@ export const RowLimitTags = ({ tags, rowLimit }: Props): ReactElement => {
           (parseInt(computedStyle?.borderLeft || "", 10) || 0) +
           (parseInt(computedStyle?.borderRight || "", 10) || 0);
 
-        if (
-          currentSumWidth + currentTagWidth <
-          boundingContainer.getBoundingClientRect().width
-        ) {
+        if (currentSumWidth + currentTagWidth < boundingContainer.getBoundingClientRect().width) {
           // the current tag can fit on this row
           currentRow.push(t);
           currentSumWidth += currentTagWidth;
@@ -99,13 +86,7 @@ export const RowLimitTags = ({ tags, rowLimit }: Props): ReactElement => {
               excessTags = iterTags.slice(idx);
             }
 
-            return calculateTagDisplay(
-              tags,
-              rowLimit,
-              boundingContainer,
-              hiddenTag,
-              excessTags
-            );
+            return calculateTagDisplay(tags, rowLimit, boundingContainer, hiddenTag, excessTags);
           }
 
           // initialize the current row with the current tag that could not fit
@@ -119,7 +100,7 @@ export const RowLimitTags = ({ tags, rowLimit }: Props): ReactElement => {
       // calculation complete, return the finalized rows
       return rows.flat();
     },
-    []
+    [],
   );
 
   const initCalculation = useCallback(() => {
@@ -131,7 +112,7 @@ export const RowLimitTags = ({ tags, rowLimit }: Props): ReactElement => {
         rowLimit,
         boundingContainerRef.current,
         hiddenTagRef.current,
-        []
+        [],
       );
       setDisplayedTags(finalizedTags);
     }
@@ -181,7 +162,7 @@ const PaddedTag = React.forwardRef<HTMLDivElement, PaddedTagProps>(
     <Tag className={styles.tag} {...{ ref }}>
       {children}
     </Tag>
-  )
+  ),
 );
 
 PaddedTag.displayName = "PaddedTag";
