@@ -2,7 +2,6 @@ import * as styles from "./TextWithHighlights.css";
 
 import React, { Children } from "react";
 import classNames from "classnames";
-import DOMPurify from "dompurify";
 
 interface Props {
   /**
@@ -67,15 +66,13 @@ export const TextWithHighlights = ({
             `<mark class="${styles.inheritedText} ${highlightClasses}">$1</mark>`,
           );
 
-          const sanitized = DOMPurify.sanitize(html);
-
           // because we're using regex to create html elements within a string,
           // we're bypassing the React's JSX and must use dangerouslySetInnerHTML
           return (
             <div
               key={index}
               className={styles.inheritedText}
-              dangerouslySetInnerHTML={{ __html: sanitized }}
+              dangerouslySetInnerHTML={{ __html: html }}
             />
           );
         } else {
