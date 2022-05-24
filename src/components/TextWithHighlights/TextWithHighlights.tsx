@@ -38,7 +38,8 @@ interface Props {
  * Will show "multiple parts" and "highlighted" with a highlighted background color,
  * and the '==' will be removed.
  *
- * Note: TextWithHighlights does not traverse nested children. Only direct string children will be processed.
+ * Note: TextWithHighlights uses `dangerouslySetInnerHTML` and should not be used to render user-generated content.
+ * Also Note: TextWithHighlights does not traverse nested children. Only direct string children will be processed.
  *
  */
 export const TextWithHighlights = ({
