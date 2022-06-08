@@ -4,6 +4,7 @@ import { FontWeight, theme } from "../../themes";
 export const menu = style({
   padding: 0,
   margin: 0,
+  marginBottom: theme.spacing["6x"],
   display: "flex",
   borderBottom: `1px solid ${theme.colors.border.default}`,
 });

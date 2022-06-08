@@ -4,35 +4,33 @@ import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 
-import { Tabs } from "./Tabs";
+import { Tab, Tabs } from "./Tabs";
 
 describe("Tabs", () => {
-  const tabs = [
-    { title: "In Progress", value: "foo" },
-    { title: "Previous", value: "bar" },
-  ];
-
+  const tabs: Record<string, Tab> = {
+    foo: { title: "In Progress", content: <p>foo</p> },
+    value: { title: "Previous", content: <p>bar</p> },
+  };
   const setSelection = vi.fn();
-  it("Renders all provided tabs", () => {
-    render(<Tabs tabs={tabs} selection={tabs[0]} setSelection={setSelection} />);
 
-    tabs.forEach((tab) => {
+  it("renders all provided tabs", () => {
+    render(<Tabs tabs={tabs} selection={tabs.foo} setSelection={setSelection} />);
+
+    Object.keys(tabs).forEach((tabKey) => {
+      const tab = tabs[tabKey];
       expect(screen.getByText(tab.title)).toBeInTheDocument();
     });
   });
 
-  it("Does *not* render tab.value property", () => {
-    render(<Tabs tabs={tabs} selection={tabs[0]} setSelection={setSelection} />);
-
-    tabs.forEach((tab) => {
-      expect(screen.queryByText(tab.value)).not.toBeInTheDocument();
-    });
+  it("renders the content of the selected tab", () => {
+    render(<Tabs tabs={tabs} selection={tabs.foo} setSelection={setSelection} />);
+    expect(screen.getByText("foo")).toBeInTheDocument();
   });
 
-  it("Fires onClick function when clicked", () => {
-    render(<Tabs tabs={tabs} selection={tabs[0]} setSelection={setSelection} />);
+  it("fires onClick function when clicked", () => {
+    render(<Tabs tabs={tabs} selection={tabs.foo} setSelection={setSelection} />);
 
-    userEvent.click(screen.getByTestId(tabs[0].title));
+    userEvent.click(screen.getByTestId(tabs.foo.title));
     expect(setSelection).toHaveBeenCalled();
   });
 });
