@@ -48,7 +48,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
         type="button"
         className={classnames([
           styles.baseButton,
-          styles.buttonTextSize[buttonSize],
+          styles.buttonSizeVariants[buttonSize],
           styles.buttonVariant[variant],
           styles.label,
           className,
@@ -61,7 +61,9 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
       >
         {isLoading ? (
           <>
-            <AnimatedSpinner className={styles.buttonSpinner}></AnimatedSpinner>
+            <AnimatedSpinner
+              className={classnames([styles.buttonSpinner], styles.buttonSpinnerVariants[variant])}
+            ></AnimatedSpinner>
             <span className={styles.loadingState}>{children}</span>
           </>
         ) : (

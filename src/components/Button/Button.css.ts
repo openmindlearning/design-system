@@ -10,7 +10,6 @@ export const baseButton = style([
     border: 0,
     borderRadius: "8px",
     transition: "background-color 0.2s, border 0.2s ease-in-out",
-    padding: "9px 20px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -31,18 +30,16 @@ export const buttonVariant = styleVariants({
     selectors: {
       "&:hover": {
         backgroundColor: theme.colors.content.secondary,
-        border: `1px solid ${theme.colors.content.secondary} !important`,
+        borderColor: theme.colors.content.secondary,
       },
-
-      "&:focus": {
+      "&:active": {
         backgroundColor: theme.colors.primary.black,
-        border: `1px solid ${theme.colors.primary.black}`,
+        borderColor: theme.colors.primary.black,
       },
-
       "&:disabled": {
         cursor: "auto",
         backgroundColor: theme.colors.content.muted,
-        border: `1px solid ${theme.colors.primary.black}`,
+        borderColor: theme.colors.content.muted,
       },
     },
   },
@@ -55,22 +52,35 @@ export const buttonVariant = styleVariants({
       "&:hover": {
         backgroundColor: theme.colors.background.tertiary,
       },
-
-      "&:focus": {
-        backgroundColor: theme.colors.background.tertiary,
+      "&:active": {
+        backgroundColor: theme.colors.primary.white,
       },
-
       "&:disabled": {
         cursor: "auto",
         color: theme.colors.primary.white,
-        backgroundColor: theme.colors.background.secondary,
-        border: `1px solid ${theme.colors.border.default}`,
+        backgroundColor: theme.colors.content.muted,
+        borderColor: theme.colors.content.muted,
       },
     },
   },
   destructive: {
-    backgroundColor: theme.colors.primary.red,
-    border: `1px solid ${theme.colors.border.default}`,
+    backgroundColor: theme.colors.background.danger,
+    border: `1px solid ${theme.colors.border.danger}`,
+    color: theme.colors.red[600],
+    ":hover": {
+      backgroundColor: theme.colors.red[300],
+      borderColor: theme.colors.red[500],
+    },
+    ":active": {
+      backgroundColor: theme.colors.background.danger,
+      borderColor: theme.colors.background.danger,
+    },
+    ":disabled": {
+      cursor: "auto",
+      backgroundColor: theme.colors.red[100],
+      color: theme.colors.red[300],
+      borderColor: theme.colors.red[200],
+    },
   },
   transparent: {
     backgroundColor: "transparent",
@@ -79,8 +89,8 @@ export const buttonVariant = styleVariants({
       "&:hover": {
         backgroundColor: theme.colors.background.tertiary,
       },
-      "&:focus": {
-        backgroundColor: theme.colors.background.tertiary,
+      "&:active": {
+        backgroundColor: "transparent",
       },
       "&:disabled": {
         cursor: "auto",
@@ -91,7 +101,7 @@ export const buttonVariant = styleVariants({
   },
 });
 
-export const buttonTextSize = styleVariants({
+const buttonTextSize = styleVariants({
   large: [
     theme.text.body.large,
     {
@@ -112,12 +122,45 @@ export const buttonTextSize = styleVariants({
   ],
 });
 
+const buttonPaddingSize = styleVariants({
+  large: {
+    padding: `${theme.spacing["2x"]} ${theme.spacing["5x"]}`,
+  },
+  medium: {
+    padding: `6px ${theme.spacing["4x"]}`,
+  },
+  small: {
+    padding: `${theme.spacing["1x"]} ${theme.spacing["3x"]}`,
+  },
+});
+
+export const buttonSizeVariants = styleVariants({
+  large: [buttonPaddingSize.large, buttonTextSize.large],
+  medium: [buttonPaddingSize.medium, buttonTextSize.medium],
+  small: [buttonPaddingSize.small, buttonTextSize.small],
+});
+
 export const loadingState = style({
   visibility: "hidden",
 });
 
 export const buttonSpinner = style({
   position: "absolute",
+});
+
+export const buttonSpinnerVariants = styleVariants({
+  primary: {
+    color: theme.colors.primary.white,
+  },
+  secondary: {
+    color: theme.colors.primary.black,
+  },
+  destructive: {
+    color: theme.colors.red[600],
+  },
+  transparent: {
+    color: theme.colors.content.secondary,
+  },
 });
 
 // TODO: Currently the global font-family is taking precedence over the design system class

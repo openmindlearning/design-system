@@ -34,18 +34,19 @@ export const Example = (): ReactElement => {
       <Popover
         {...{ referenceRef, visible }}
         popperOptions={{
-          placement: "right",
+          placement: "right-start",
           modifiers: [
+            {
+              name: "offset",
+              enabled: true,
+              options: {
+                offset: [0, 16],
+              },
+            },
             {
               name: "flip",
               options: {
                 fallbackPlacements: ["bottom"],
-              },
-            },
-            {
-              name: "offset",
-              options: {
-                offset: [0, 30],
               },
             },
           ],
