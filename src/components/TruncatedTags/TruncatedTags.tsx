@@ -1,6 +1,5 @@
 import * as styles from "./TruncatedTags.css";
 
-export const RowLimitTags = ({ tags, rowLimit }: Props): ReactElement => {
 import React, { ReactElement, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { Tag } from "../../components";
 
