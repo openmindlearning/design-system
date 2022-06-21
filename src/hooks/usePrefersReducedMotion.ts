@@ -1,9 +1,11 @@
 import React from "react";
+import { useMediaQuery } from "usehooks-ts";
 
 // from https://www.joshwcomeau.com/react/prefers-reduced-motion/
 
 const QUERY = "(prefers-reduced-motion: no-preference)";
 export function usePrefersReducedMotion() {
+  return useMediaQuery(QUERY);
   // Default to no-animations, since we don't know what the
   // user's preference is on the server.
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(true);
