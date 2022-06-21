@@ -3,7 +3,7 @@ import {
   FeatureQueries,
   StyleWithSelectors,
 } from "@vanilla-extract/css/dist/declarations/src/types";
-import { Breakpoint } from "../tokens";
+import { Breakpoint, ScreenSize } from "../tokens";
 
 /**
  * Returns a custom breakpoint function that can be reused to create styles at that breakpoint.
@@ -18,7 +18,7 @@ import { Breakpoint } from "../tokens";
  * ```
  */
 export const makeCustomBreakpoint =
-  (breakpoint: string) =>
+  (breakpoint: string | number) =>
   (styles: StyleRule): FeatureQueries<StyleWithSelectors> => ({
     [`(max-width: ${breakpoint})`]: { ...styles },
   });
@@ -37,3 +37,14 @@ export const atSmallBreakpoint = (styles: StyleRule): FeatureQueries<StyleWithSe
 
 export const atMobileBreakpoint = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
   makeCustomBreakpoint(Breakpoint.Mobile)(styles);
+
+export const atScreenSizeSm = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.sm)(styles);
+export const atScreenSizeMd = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.md)(styles);
+export const atScreenSizeLg = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.lg)(styles);
+export const atScreenSizeXl = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.xl)(styles);
+export const atScreenSizeXXL = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.xxl)(styles);

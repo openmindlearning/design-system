@@ -30,6 +30,7 @@
     "classnames": "^2.3.1",
     "react-linkify": "1.0.0-alpha",
     "react-portal": "^4.2.2",
+    "usehooks-ts": "2.6.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
