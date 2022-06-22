@@ -23,16 +23,14 @@ export const makeCustomBreakpoint =
     [`(max-width: ${breakpoint})`]: { ...styles },
   });
 
+export const atScreenSizeXs = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.xs)(styles);
 export const atScreenSizeSm = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
   makeCustomBreakpoint(ScreenSize.sm)(styles);
 export const atScreenSizeMd = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
   makeCustomBreakpoint(ScreenSize.md)(styles);
 export const atScreenSizeLg = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
   makeCustomBreakpoint(ScreenSize.lg)(styles);
-export const atScreenSizeXl = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
-  makeCustomBreakpoint(ScreenSize.xl)(styles);
-export const atScreenSizeXXL = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
-  makeCustomBreakpoint(ScreenSize.xxl)(styles);
 
 // below are all deprecated. Prefer `atScreenSizeX` instead.
 export const atLargeBreakpoint = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>

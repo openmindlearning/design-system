@@ -1,9 +1,8 @@
 export enum ScreenSize {
-  sm = 640,
-  md = 768,
-  lg = 1024,
-  xl = 1280,
-  xxl = 1536,
+  xs = 600,
+  sm = 905,
+  md = 1240,
+  lg = 1440,
 }
 
 // deprecated, use ScreenSize instead.

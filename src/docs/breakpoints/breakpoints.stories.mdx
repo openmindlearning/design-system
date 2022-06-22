@@ -8,11 +8,10 @@ Use the `ScreenSize` enum for standard breakpoints.
 
 ```ts
 export enum ScreenSize {
-  sm = 640,
-  md = 768,
-  lg = 1024,
-  xl = 1280,
-  xxl = 1536,
+  xs = 600,
+  sm = 905,
+  md = 1240,
+  lg = 1440,
 }
 ```
 
@@ -23,7 +22,7 @@ import { style } from "@vanilla-extract/css";
 export const myStyle = style({
   ...
   "@media": {
-    ...atScreenSizeSm({
+    ...atScreenSizeXs({
       justifyContent: "flex-start",
       padding: "0px 24px",
     }),
@@ -34,7 +33,7 @@ export const myStyle = style({
 ### In React components:
 
 ```ts
-const isScreenSmall = useBreakpoint(ScreenSize.sm);
+const isScreenSmall = useBreakpoint(ScreenSize.xs);
 
 return (
   {isScreenSmall && <></>}
