@@ -1,7 +1,7 @@
 import { createTheme } from "@vanilla-extract/css";
 import { defaultColors } from "./base/base-theme.css";
 import { darkColors } from "./dark-theme/dark-theme.css";
-import { boxShadows, textShadows, typography, screenSizes, spacing } from "../tokens";
+import { boxShadows, textShadows, typography, spacing } from "../tokens";
 
 export enum ThemeType {
   light = "light",
@@ -11,7 +11,6 @@ export enum ThemeType {
 // default theme (light colors)
 export const lightThemeRawValues = {
   spacing,
-  screenSizes,
   text: typography,
   boxShadows,
   textShadows,

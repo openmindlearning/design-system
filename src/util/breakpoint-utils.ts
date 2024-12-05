@@ -3,7 +3,7 @@ import {
   FeatureQueries,
   StyleWithSelectors,
 } from "@vanilla-extract/css/dist/declarations/src/types";
-import { Breakpoint } from "../tokens";
+import { Breakpoint, ScreenSize } from "../tokens";
 
 /**
  * Returns a custom breakpoint function that can be reused to create styles at that breakpoint.
@@ -18,11 +18,21 @@ import { Breakpoint } from "../tokens";
  * ```
  */
 export const makeCustomBreakpoint =
-  (breakpoint: string) =>
+  (breakpoint: string | number) =>
   (styles: StyleRule): FeatureQueries<StyleWithSelectors> => ({
     [`(max-width: ${breakpoint})`]: { ...styles },
   });
 
+export const atScreenSizeXs = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.xs)(styles);
+export const atScreenSizeSm = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.sm)(styles);
+export const atScreenSizeMd = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.md)(styles);
+export const atScreenSizeLg = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
+  makeCustomBreakpoint(ScreenSize.lg)(styles);
+
+// below are all deprecated. Prefer `atScreenSizeX` instead.
 export const atLargeBreakpoint = (styles: StyleRule): FeatureQueries<StyleWithSelectors> =>
   makeCustomBreakpoint(Breakpoint.Large)(styles);
 

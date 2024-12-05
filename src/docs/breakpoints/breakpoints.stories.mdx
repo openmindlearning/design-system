@@ -1,0 +1,43 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Breakpoints" />
+
+# Breakpoints
+
+Use the `ScreenSize` enum for standard breakpoints.
+
+```ts
+export enum ScreenSize {
+  xs = 600,
+  sm = 905,
+  md = 1240,
+  lg = 1440,
+}
+```
+
+### In VanillaExtract styles:
+
+```ts
+import { style } from "@vanilla-extract/css";
+export const myStyle = style({
+  ...
+  "@media": {
+    ...atScreenSizeXs({
+      justifyContent: "flex-start",
+      padding: "0px 24px",
+    }),
+  },
+});
+```
+
+### In React components:
+
+```ts
+const isScreenSmall = useBreakpoint(ScreenSize.xs);
+
+return (
+  {isScreenSmall && <></>}
+)
+```
+
+_Note: `useBreakpoint` hook needs access to `window` property and will run client-side only, so `useBreakpoint` will default to `true` during SSR or SSG rendering (window size of 0)._
